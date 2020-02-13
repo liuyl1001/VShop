@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="root" namespace="/" extends="struts-default">
+		<!-- 配置拦截器 -->
+		<interceptors> 
+			<interceptor name="validator" class="cn.mldn.util.interceptor.ValidatorInterceptor"/>
+			<interceptor name="adminLoginCheck" class="cn.mldn.vshop.interceptor.AdminInterceptor"/>
+			<interceptor name="memberLoginCheck" class="cn.mldn.vshop.interceptor.MemberInterceptor"/>
+			<interceptor-stack name="adminUploadStack">
+				<interceptor-ref name="adminLoginCheck"/>
+				<interceptor-ref name="validator"/>
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">2097152</param>
+					<param name="allowedTypes">
+						image/jpeg,image/jpg,image/bmp,image/gif,image/png
+					</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+			<interceptor-stack name="adminStack">
+				<interceptor-ref name="adminLoginCheck"/>
+				<interceptor-ref name="validator"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>  
+			<interceptor-stack name="adminLoginStack">
+				<interceptor-ref name="validator"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack> 
+			<interceptor-stack name="memberLoginStack">
+				<interceptor-ref name="validator"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack> 
+			<interceptor-stack name="memberStack">
+				<interceptor-ref name="memberLoginCheck"/>
+				<interceptor-ref name="validator"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 配置全局跳转 -->
+		<global-results>
+			<result name="error.page">/pages/errors.jsp</result>
+			<result name="forward.page">/pages/forward.jsp</result>
+			<result name="admin.login.page">/pages/back/login.jsp</result>
+		</global-results>
+	</package>
+</struts>    

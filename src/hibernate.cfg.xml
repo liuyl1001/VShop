@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<mapping class="cn.mldn.vshop.pojo.Item" />
+		<mapping class="cn.mldn.vshop.pojo.Subitem" />
+		<mapping class="cn.mldn.vshop.pojo.Member" />
+		<mapping class="cn.mldn.vshop.pojo.Goods" />
+		<mapping class="cn.mldn.vshop.pojo.Shopcar" />
+		<mapping class="cn.mldn.vshop.pojo.Province" />
+		<mapping class="cn.mldn.vshop.pojo.City" />
+		<mapping class="cn.mldn.vshop.pojo.Orders" />
+		<mapping class="cn.mldn.vshop.pojo.Details" />
+		<mapping class="cn.mldn.vshop.pojo.Address" />
+	</session-factory>
+</hibernate-configuration>
